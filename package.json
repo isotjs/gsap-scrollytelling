@@ -6,12 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "remotion:studio": "remotion studio remotion/index.ts",
+    "remotion:render:loops": "npm run remotion:render:hero && npm run remotion:render:pain && npm run remotion:render:product && npm run remotion:render:automation && npm run remotion:render:insights",
+    "remotion:render:hero": "remotion render remotion/index.ts HeroLoop public/visuals/hero-loop.mp4",
+    "remotion:render:pain": "remotion render remotion/index.ts PainLoop public/visuals/pain-loop.mp4",
+    "remotion:render:product": "remotion render remotion/index.ts ProductLoop public/visuals/product-loop.mp4",
+    "remotion:render:automation": "remotion render remotion/index.ts AutomationLoop public/visuals/automation-loop.mp4",
+    "remotion:render:insights": "remotion render remotion/index.ts InsightsLoop public/visuals/insights-loop.mp4"
   },
   "dependencies": {
+    "@remotion/cli": "^4.0.422",
+    "gsap": "^3.14.2",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "remotion": "^4.0.422",
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

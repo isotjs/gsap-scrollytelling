@@ -1,0 +1,20 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#F7EFE3"/>
+  <rect x="160" y="114" width="960" height="98" rx="18" fill="#FFF9F2" stroke="#D4B498"/>
+  <rect x="160" y="274" width="960" height="98" rx="18" fill="#FFF9F2" stroke="#D4B498"/>
+  <rect x="160" y="434" width="960" height="98" rx="18" fill="#FFF9F2" stroke="#D4B498"/>
+  <rect x="160" y="594" width="960" height="98" rx="18" fill="#FFF9F2" stroke="#D4B498"/>
+  <rect x="160" y="224" width="960" height="6" rx="3" fill="url(#g0)"/>
+  <rect x="160" y="384" width="960" height="6" rx="3" fill="url(#g0)"/>
+  <rect x="160" y="544" width="960" height="6" rx="3" fill="url(#g0)"/>
+  <text x="200" y="176" fill="#2A211A" font-family="sans-serif" font-size="40">Storefront</text>
+  <text x="200" y="336" fill="#2A211A" font-family="sans-serif" font-size="40">Inventory</text>
+  <text x="200" y="496" fill="#2A211A" font-family="sans-serif" font-size="40">Print + Ship</text>
+  <text x="200" y="656" fill="#2A211A" font-family="sans-serif" font-size="40">Customer Updates</text>
+  <defs>
+    <linearGradient id="g0" x1="160" y1="227" x2="1120" y2="227" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EE7D40"/>
+      <stop offset="1" stop-color="#E74923"/>
+    </linearGradient>
+  </defs>
+</svg>

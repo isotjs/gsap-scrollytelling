@@ -1,0 +1,20 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#F7EFE3"/>
+  <circle cx="356" cy="278" r="188" fill="url(#g0)"/>
+  <circle cx="915" cy="436" r="170" fill="url(#g1)"/>
+  <rect x="756" y="124" width="250" height="164" rx="24" fill="#FFF9F2" stroke="#D6B69B"/>
+  <text x="786" y="180" fill="#5C4434" font-family="sans-serif" font-size="28">Drop readiness</text>
+  <text x="786" y="244" fill="#1F1812" font-family="sans-serif" font-size="70" font-weight="700">98%</text>
+  <defs>
+    <radialGradient id="g0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(356 278) rotate(90) scale(188)">
+      <stop stop-color="#F4A370"/>
+      <stop offset="0.6" stop-color="#E96031"/>
+      <stop offset="1" stop-color="#C7441F"/>
+    </radialGradient>
+    <radialGradient id="g1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(915 436) rotate(90) scale(170)">
+      <stop stop-color="#FFE3C0"/>
+      <stop offset="0.62" stop-color="#F7BA8A"/>
+      <stop offset="1" stop-color="#EC904C"/>
+    </radialGradient>
+  </defs>
+</svg>

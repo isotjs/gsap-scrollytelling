@@ -1,0 +1,21 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#F7EFE3"/>
+  <rect x="150" y="112" width="470" height="176" rx="20" fill="#FFF9F2" stroke="#D5B69A"/>
+  <rect x="660" y="112" width="470" height="176" rx="20" fill="#FFF9F2" stroke="#D5B69A"/>
+  <text x="188" y="174" fill="#5C4534" font-family="sans-serif" font-size="26">Repeat buyers</text>
+  <text x="188" y="252" fill="#1F1812" font-family="sans-serif" font-size="82" font-weight="700">+41%</text>
+  <text x="698" y="174" fill="#5C4534" font-family="sans-serif" font-size="26">Sell-through week 1</text>
+  <text x="698" y="252" fill="#1F1812" font-family="sans-serif" font-size="82" font-weight="700">87%</text>
+  <rect x="150" y="352" width="980" height="36" rx="18" fill="#DEC9B3"/>
+  <rect x="150" y="352" width="862" height="36" rx="18" fill="url(#g0)"/>
+  <rect x="150" y="424" width="980" height="36" rx="18" fill="#DEC9B3"/>
+  <rect x="150" y="424" width="695" height="36" rx="18" fill="url(#g0)"/>
+  <rect x="150" y="496" width="980" height="36" rx="18" fill="#DEC9B3"/>
+  <rect x="150" y="496" width="782" height="36" rx="18" fill="url(#g0)"/>
+  <defs>
+    <linearGradient id="g0" x1="150" y1="370" x2="1130" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC7F41"/>
+      <stop offset="1" stop-color="#E84722"/>
+    </linearGradient>
+  </defs>
+</svg>
