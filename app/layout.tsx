@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Sora } from "next/font/google";
+import { Anton, Playfair_Display, Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const displayFont = Bebas_Neue({
+const displayFont = Anton({
   variable: "--font-display",
   weight: "400",
   subsets: ["latin"],
 });
 
-const bodyFont = Sora({
+const bodyFont = Playfair_Display({
   variable: "--font-body",
+  subsets: ["latin"],
+});
+
+const monoFont = Space_Mono({
+  variable: "--font-mono",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -25,8 +31,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${displayFont.variable} ${bodyFont.variable} antialiased`}>
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

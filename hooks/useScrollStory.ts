@@ -6,7 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function useScrollStory(rootRef: RefObject<HTMLElement | null>) {
+export function useScrollStory(
+  rootRef: RefObject<HTMLElement | null>,
+  onSectionChange?: (section: string) => void
+) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) {
@@ -82,145 +85,192 @@ export function useScrollStory(rootRef: RefObject<HTMLElement | null>) {
       const mm = gsap.matchMedia();
 
       const buildScenes = (isMobile: boolean) => {
-        if (!isMobile) {
-          ScrollTrigger.create({
-            trigger: "[data-scene='hook']",
-            start: "top top",
-            end: "+=90%",
-            pin: ".hero-pin",
-            scrub: true,
-          });
-        }
 
+
+        // Track active section for progress indicator
+        const sections = [
+          { id: "hero", selector: "[data-scene='hero']" },
+          { id: "problem", selector: "[data-scene='pain']" },
+          { id: "build", selector: "[data-scene='product']" },
+          { id: "engine", selector: "[data-scene='automation']" },
+          { id: "signal", selector: "[data-scene='insights']" },
+          { id: "cta", selector: "[data-scene='cta']" },
+        ];
+
+        sections.forEach(({ id, selector }) => {
+          ScrollTrigger.create({
+            trigger: selector,
+            start: "top center",
+            end: "bottom center",
+            onEnter: () => onSectionChange?.(id),
+            onEnterBack: () => onSectionChange?.(id),
+          });
+        });
+
+        // Hero word animations - single trigger, not scrubbed
         wordTargets.forEach(({ element, words }) => {
           if (!words.length) {
             return;
           }
 
-          const inHero = element.closest("[data-scene='hook']") !== null;
+          const inHero = element.closest("[data-scene='hero']") !== null;
 
           if (inHero) {
+            // Hero animations play immediately on load
             gsap.from(words, {
               yPercent: 120,
               opacity: 0,
               duration: 0.9,
               stagger: 0.028,
               ease: "power3.out",
+              delay: 0.2,
             });
             return;
           }
 
+          // Other sections - animate when they enter viewport, fixed duration
           gsap.from(words, {
             yPercent: 115,
             opacity: 0,
+            duration: 0.8,
             stagger: 0.022,
             ease: "power3.out",
             scrollTrigger: {
               trigger: element,
-              start: isMobile ? "top 88%" : "top 78%",
-              end: "bottom 44%",
-              scrub: true,
+              start: isMobile ? "top 85%" : "top 75%",
+              toggleActions: "play none none reverse",
             },
           });
         });
 
+        // Rise animations - fixed duration, not scrubbed
         gsap.utils.toArray<HTMLElement>("[data-animate='rise']").forEach((item) => {
           gsap.from(item, {
-            y: 16,
+            y: 24,
             opacity: 0,
             duration: 0.6,
             ease: "power2.out",
             scrollTrigger: {
               trigger: item,
-              start: isMobile ? "top 94%" : "top 84%",
-              end: "bottom 55%",
-              scrub: true,
+              start: isMobile ? "top 90%" : "top 85%",
+              toggleActions: "play none none reverse",
             },
           });
         });
 
-        gsap.to("[data-scene='hook'] .scene-loop", {
-          yPercent: -8,
-          rotate: -1.2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "[data-scene='hook']",
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
+        // Visual clip-path animations
+        gsap.utils.toArray<HTMLElement>("[data-animate='visual']").forEach((visual) => {
+          const inHero = visual.closest("[data-scene='hero']") !== null;
+          
+          if (inHero) {
+            gsap.from(visual, {
+              clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
+              duration: 1.2,
+              ease: "power3.inOut",
+              delay: 0.4,
+            });
+          } else {
+            gsap.fromTo(
+              visual,
+              {
+                clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)",
+              },
+              {
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                duration: 1,
+                ease: "power3.inOut",
+                scrollTrigger: {
+                  trigger: visual,
+                  start: isMobile ? "top 85%" : "top 75%",
+                  toggleActions: "play none none reverse",
+                },
+              }
+            );
+          }
         });
 
-        gsap.utils
-          .toArray<HTMLElement>(".story-section[data-scene]:not([data-scene='cta'])")
-          .forEach((section) => {
-            const copy = section.querySelector(".section-copy");
-            const visual = section.querySelector(".section-visual");
+        // Section background number parallax - continuous animation
+        gsap.utils.toArray<HTMLElement>(".section-number").forEach((num) => {
+          gsap.to(num, {
+            y: -150,
+            ease: "none",
+            scrollTrigger: {
+              trigger: num.closest(".story-section"),
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1,
+            },
+          });
+        });
 
-            if (copy) {
-              gsap.from(copy, {
-                y: 34,
-                opacity: 0,
-                scrollTrigger: {
-                  trigger: section,
-                  start: isMobile ? "top 86%" : "top 72%",
-                  end: "bottom 45%",
-                  scrub: true,
-                },
-              });
-            }
+        // Section copy entrance animations
+        gsap.utils.toArray<HTMLElement>(".section-copy").forEach((copy) => {
+          const inHero = copy.closest("[data-scene='hero']") !== null;
+          if (inHero) return;
 
-            if (visual) {
-              gsap.fromTo(
-                visual,
-                {
-                  y: 40,
-                  opacity: 0.25,
-                  scale: 0.96,
-                },
-                {
-                  y: -16,
-                  opacity: 1,
-                  scale: 1,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: section,
-                    start: isMobile ? "top 88%" : "top 72%",
-                    end: "bottom 40%",
-                    scrub: true,
-                  },
-                },
-              );
-            }
+          gsap.from(copy, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: copy,
+              start: isMobile ? "top 85%" : "top 75%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        });
+
+        // Footer entrance animation
+        const footer = document.querySelector(".main-footer");
+        if (footer) {
+          gsap.from(footer, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: footer,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
           });
 
-        gsap.from(".hero-section .scene-loop", {
-          y: 28,
-          scrollTrigger: {
-            trigger: "[data-scene='hook']",
-            start: isMobile ? "top 88%" : "top 72%",
-            end: "bottom 38%",
-            scrub: true,
-          },
-        });
+          // Footer columns staggered animation
+          gsap.from(footer.querySelectorAll("[data-animate='column']"), {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: footer,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
 
-        gsap.from(".cta-panel", {
-          y: 36,
-          opacity: 0,
-          scrollTrigger: {
-            trigger: "[data-scene='cta']",
-            start: isMobile ? "top 88%" : "top 72%",
-            end: "bottom 45%",
-            scrub: true,
-          },
-        });
+          // Footer bottom bar
+          gsap.from(footer.querySelector("[data-animate='bottom']"), {
+            opacity: 0,
+            duration: 0.6,
+            delay: 0.3,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: footer,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+
       };
 
-      mm.add("(max-width: 767px)", () => {
+      mm.add("(max-width: 1023px)", () => {
         buildScenes(true);
       });
 
-      mm.add("(min-width: 768px)", () => {
+      mm.add("(min-width: 1024px)", () => {
         buildScenes(false);
       });
 
@@ -233,5 +283,5 @@ export function useScrollStory(rootRef: RefObject<HTMLElement | null>) {
       textRestoreCallbacks.forEach((restore) => restore());
       ctx.revert();
     };
-  }, [rootRef]);
+  }, [rootRef, onSectionChange]);
 }

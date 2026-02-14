@@ -16,7 +16,10 @@
     "remotion:render:insights": "remotion render remotion/index.ts InsightsLoop public/visuals/insights-loop.mp4"
   },
   "dependencies": {
+    "@remotion/animated-emoji": "^4.0.422",
     "@remotion/cli": "^4.0.422",
+    "@remotion/light-leaks": "^4.0.422",
+    "@remotion/transitions": "^4.0.422",
     "gsap": "^3.14.2",
     "next": "16.1.6",
     "react": "19.2.3",

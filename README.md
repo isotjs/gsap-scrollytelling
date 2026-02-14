@@ -1,6 +1,17 @@
 # GSAP Scroll Storytelling Website
 
-I am experimenting with a skill that helps agents build GSAP Scrollytelling websites, and remotion to create visuals (ChatGPT 5.3 Codex used on this).
+I am experimenting with a skill that helps agents build GSAP Scrollytelling websites, and remotion to create visuals.
+
+## Logs
+
+1st commit:
+- My gsap skill.md, and remotion skill
+- GPT 5.3 Codex
+
+2nd commit:
+- My gsap skill.md, remotion skill, and frontend-design skill.
+- ngl it made a sick footer!
+
 
 ## Getting Started
 
@@ -39,3 +50,8 @@ npm run remotion:render:loops
 - Scroll animation logic: `hooks/useScrollStory.ts`
 - Story visuals: `components/story/StoryVisuals.tsx`
 - Remotion compositions: `remotion/Root.tsx`, `remotion/scenes/StoryLoop.tsx`
+
+## Skills
+
+https://skills.sh/anthropics/skills/frontend-design
+https://www.remotion.dev/   
