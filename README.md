@@ -11,6 +11,7 @@ I am experimenting with a skill that helps agents build GSAP Scrollytelling webs
 2nd commit:
 - My gsap skill.md, remotion skill, and frontend-design skill.
 - ngl it made a sick footer!
+- Kimi K2.5 Free
 
 
 ## Getting Started
